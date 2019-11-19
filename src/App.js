@@ -82,6 +82,8 @@ class App extends Component {
         meetingRoom: ""
       }
     });
+
+    window.location.reload(); 
    // console.log("------state here in new click",this.state.current)
   };
 
