@@ -24,7 +24,15 @@ class App extends Component {
         meetingRoom: "TP Room"
       }
     ],
-    current: {}
+    current: {
+      id: null,
+        trainingName: "",
+        description: "",
+        department: "",
+        date: "",
+        duration: null,
+        meetingRoom: ""
+    }
   };
 
   onSubmit = model => {
@@ -39,8 +47,16 @@ class App extends Component {
     }
 
     this.setState({
-      data: [model, ...data],
-      current: {} // todo
+      current: {
+        id: null,
+        trainingName: "",
+        description: "",
+        department: "",
+        date: "",
+        duration: null,
+        meetingRoom: ""
+      } , // todo,
+      data: [model, ...data]
     });
   };
 
@@ -54,10 +70,19 @@ class App extends Component {
     });
   };
 
-  onNewClick = e => {
+  onNewClick = () => {
     this.setState({
-      current: {}
+      current: {
+        id: null,
+        trainingName: "",
+        description: "",
+        department: "",
+        date: "",
+        duration: null,
+        meetingRoom: ""
+      }
     });
+   // console.log("------state here in new click",this.state.current)
   };
 
   mySearchFunction = () => {
@@ -108,7 +133,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="form-actions">
-          <button className="new_training" onClick={this.onNewClick} type="submit">
+          <button className="new_training" onClick={() => {this.onNewClick()}} type="submit">
             SCHEDULE NEW TRAINING
           </button>
         </div>
@@ -134,7 +159,7 @@ class App extends Component {
             },
             { key: "duration", label: "Duration", type: "number" },
             {
-              key: "meeting_room",
+              key: "meetingRoom",
               label: "Meeting Room",
 
             }
@@ -144,15 +169,30 @@ class App extends Component {
             this.onSubmit(model);
           }}
         />
-
-        <input type="text" id="myInput" onChange={() => { this.mySearchFunction() }} placeholder="Search for names.." title="Type in a name"></input>
-        <table border="1" id="myTable">
-          <div>
-            Scheduled Trainings
+        <div className="filterSection">
+        <label htmlFor="myInput">Search : </label>
+        <input type="text" id="myInput" onChange={() => { this.mySearchFunction() }} placeholder="Search for training name...." title="Type in a name"></input>
         </div>
-          <div>
+        <table border="1" id="myTable">
+          {/* <div>
+            Scheduled Trainings
+        </div> */}
+        <thead>
+          <tr>
+            <th>Scheduled Trainings</th>
+          </tr>
+          <tr>
+            <th>Training Name</th>
+            <th>Description</th>
+            <th>Department</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Meeting Room</th>
+          </tr>
+        </thead>
+          {/* <div>
 
-          </div>
+          </div> */}
           <tbody>{data}</tbody>
         </table>
       </div>
