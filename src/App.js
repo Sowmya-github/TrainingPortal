@@ -83,7 +83,7 @@ class App extends Component {
       }
     });
 
-    window.location.reload(); 
+    //window.location.reload(); 
    // console.log("------state here in new click",this.state.current)
   };
 
